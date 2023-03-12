@@ -16,7 +16,8 @@ describe("UserController", () => {
       name: "hi",
       password: "hashed",
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      cards: []
     };
     fakeUserService = {
       create: (name, password) =>
@@ -25,7 +26,8 @@ describe("UserController", () => {
           name,
           password,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          cards: []
         }),
       findByName: () => Promise.resolve(randomUser),
       findOne: () => Promise.resolve(randomUser),
@@ -39,7 +41,8 @@ describe("UserController", () => {
           password: "1234",
           id: 1,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          cards: []
         }),
       register: () => Promise.resolve(randomUser)
     };

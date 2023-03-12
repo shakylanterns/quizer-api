@@ -1,4 +1,3 @@
-import { Card } from "src/card/card.entity";
 import {
   Column,
   CreateDateColumn,
@@ -7,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+import { Card } from "../card/card.entity";
 
 @Entity()
 export class User {

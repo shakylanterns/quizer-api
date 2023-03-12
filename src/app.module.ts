@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import * as session from "express-session";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
+import { CardModule } from "./card/card.module";
 import { getDataSourceConfig } from "./data-source";
 import { UserModule } from "./user/user.module";
 
@@ -19,7 +20,8 @@ import { UserModule } from "./user/user.module";
         return getDataSourceConfig(config.get<string>("DB_NAME"));
       }
     }),
-    UserModule
+    UserModule,
+    CardModule
   ],
   controllers: [AppController],
   providers: [AppService]

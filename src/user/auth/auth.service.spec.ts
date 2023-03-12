@@ -23,7 +23,8 @@ describe("AuthService", () => {
           password,
           id: users.length,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          cards: []
         };
         users.push(made);
         return Promise.resolve(made);

@@ -31,7 +31,9 @@ beforeEach(async () => {
 
   for (const entity of entities) {
     const repository = src.getRepository(entity.name);
-    await repository.query(`DELETE FROM "${entity.tableName}"`);
+    await repository.query(
+      `TRUNCATE "${entity.tableName}" RESTART IDENTITY CASCADE;`
+    );
   }
 });
 
