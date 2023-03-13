@@ -7,6 +7,7 @@ import {
   UpdateDateColumn
 } from "typeorm";
 import { Card } from "../card/card.entity";
+import { Collection } from "../collection/collection.entity";
 
 @Entity()
 export class User {
@@ -27,4 +28,7 @@ export class User {
 
   @OneToMany(() => Card, (card) => card.owner)
   cards: Card[];
+
+  @OneToMany(() => Collection, (collection) => collection.owner)
+  collections: Collection[];
 }

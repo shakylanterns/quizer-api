@@ -3,10 +3,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+import { Collection } from "../collection/collection.entity";
 import { User } from "../user/user.entity";
 
 @Entity()
@@ -30,4 +32,7 @@ export class Card {
 
   @ManyToOne(() => User, (user) => user.cards, { onDelete: "CASCADE" })
   owner: User;
+
+  @ManyToMany(() => Collection, (collection) => collection.cards)
+  collections: Collection[];
 }
