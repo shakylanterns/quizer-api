@@ -112,7 +112,7 @@ describe("CollectionController (e2e)", () => {
       .get(`/collection/${response.body.id}`)
       .set("Cookie", cookie)
       .expect(200);
-    expect(getResp.body.cards).toHaveLength(1);
+    expect(getResp.body.cardIds).toHaveLength(1);
   });
 
   it("removes a card from the collection", async () => {
@@ -142,6 +142,6 @@ describe("CollectionController (e2e)", () => {
       .get(`/collection/${response.body.id}`)
       .set("Cookie", cookie)
       .expect(200);
-    expect(getResp.body.cards).toHaveLength(0);
+    expect(getResp.body.cardIds).toHaveLength(0);
   });
 });

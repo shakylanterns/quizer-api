@@ -10,14 +10,17 @@ import {
   Post,
   UseGuards
 } from "@nestjs/common";
+import { Serializer } from "../interceptors/serializer.interceptor";
 import { LoggedInUser } from "../user/decorators/logged-in-user.decorator";
 import { AuthGuard } from "../user/guards/auth.guard";
 import { User } from "../user/user.entity";
 import { CollectionService } from "./collection.service";
 import { AddCollectionDto } from "./dtos/add-collection.dto";
+import { ReturnCollectionDto } from "./dtos/return-collection.dto";
 import { UpdateCollectionDto } from "./dtos/update-collection.dto";
 
 @Controller("collection")
+@Serializer(ReturnCollectionDto)
 @UseGuards(AuthGuard)
 export class CollectionController {
   constructor(private collectionService: CollectionService) {}

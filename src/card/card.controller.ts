@@ -10,14 +10,17 @@ import {
   Post,
   UseGuards
 } from "@nestjs/common";
+import { Serializer } from "../interceptors/serializer.interceptor";
 import { LoggedInUser } from "../user/decorators/logged-in-user.decorator";
 import { AuthGuard } from "../user/guards/auth.guard";
 import { User } from "../user/user.entity";
 import { CardService } from "./card.service";
 import { AddCardDto } from "./dtos/add-card.dto";
+import { ReturnCardDto } from "./dtos/return-card.dto";
 import { UpdateCardDto } from "./dtos/update-card.dto";
 
 @Controller("card")
+@Serializer(ReturnCardDto)
 @UseGuards(AuthGuard)
 export class CardController {
   constructor(private cardService: CardService) {}

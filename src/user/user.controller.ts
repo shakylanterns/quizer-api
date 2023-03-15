@@ -24,6 +24,7 @@ import { User } from "./user.entity";
 import { UserService } from "./user.service";
 
 @Controller("user")
+@Serializer(ReturnUserDto)
 export class UserController {
   constructor(
     private authService: AuthService,
@@ -31,14 +32,12 @@ export class UserController {
   ) {}
 
   @Get("/me")
-  @Serializer(ReturnUserDto)
   @UseGuards(AuthGuard)
   me(@LoggedInUser() user: User) {
     return user;
   }
 
   @Post("/register")
-  @Serializer(ReturnUserDto)
   async register(@Body() body: RegisteruserDto, @Session() session: any) {
     const user = await this.authService.register(body.name, body.password);
     if (!user) {
@@ -50,7 +49,6 @@ export class UserController {
 
   @Post("/login")
   @HttpCode(200)
-  @Serializer(ReturnUserDto)
   async login(@Body() body: LoginUserDto, @Session() session: any) {
     const user = await this.authService.login(body.name, body.password);
     if (!user) {
@@ -67,7 +65,6 @@ export class UserController {
   }
 
   @Get("/:id")
-  @Serializer(ReturnUserDto)
   async findUser(@Param("id") id: string) {
     const user = await this.userService.findOne(parseInt(id));
     if (!user) {
@@ -77,7 +74,6 @@ export class UserController {
   }
 
   @Delete("/:id")
-  @Serializer(ReturnUserDto)
   async remove(@Param("id") id: string) {
     const user = await this.userService.remove(parseInt(id));
     if (!user) {
@@ -87,7 +83,6 @@ export class UserController {
   }
 
   @Patch("/:id")
-  @Serializer(ReturnUserDto)
   async update(@Body() body: UpdateUserDto, @Param("id") id: string) {
     const user = await this.userService.update(parseInt(id), body);
     if (!user) {
